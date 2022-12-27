@@ -14,6 +14,9 @@ class AdminProfileController extends Controller
     {
         $id = Auth::guard('admin')->id();
         $adminData = Admin::find($id);
+        
+
+        //dd(Auth::guard('admin')->user());
         return view('admin.admin_profile_view', compact('adminData'));
     } // end method
 
@@ -94,13 +97,26 @@ class AdminProfileController extends Controller
     }
 
 
-    public function createAdmin(array $input)
+    public function createAdminn(Request $request)
     {
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
         ]);
+
+        Admin::insert([
+                'name' => $request->name,
+                'email' => $request->email ,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $notification = array(
+                'message' => 'New Admin has been create Successfully',
+                'alert-type' => 'success'
+            );
+
+        return redirect()->back();
     }
 
 
