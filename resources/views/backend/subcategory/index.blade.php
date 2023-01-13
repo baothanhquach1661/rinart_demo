@@ -28,7 +28,7 @@
 			<div class="card">
 				<div class="card-body">
 
-					<h4 class="card-title">SubCategories Datatable</h4><br>
+					<h4 class="card-title"></h4><br>
 
 					<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 						<thead>
@@ -43,12 +43,12 @@
 						<tbody>
 							@foreach($subcat as $item)
 							<tr>
-								<td>{{ $item['category']['category_name_en'] }}</td>
+								<td>{{ $item['category']['category_name_vi'] }}</td>
 								<td>{{ $item->subcategory_name_en }}</td>
 								<td>{{ $item->subcategory_name_vi }}</td>
 								<td>
 									<a href="{{ route('admin.subcategory.edit', $item->id) }}" class="btn btn-info">Edit</a>
-									<a href="{{ route('admin.subcategory.delete', $item->id) }}" class="btn btn-danger" onclick="return confirm('Once deleted, you will not be able to recover this imaginary file!');">Delete</a>
+									<a href="{{ route('admin.subcategory.delete', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
 								</td>
 							</tr>
 							@endforeach

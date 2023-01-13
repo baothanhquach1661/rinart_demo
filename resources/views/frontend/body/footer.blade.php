@@ -1,74 +1,106 @@
-<footer id="footer">
+<footer class="axil-footer-area footer-style-1 footer-dark">
 
+
+@php
+
+    $data = App\Models\FooterSetting::find(1);
+
+@endphp
+
+  <!-- Start Footer Top Area  -->
   <div class="footer-top">
     <div class="container">
-      <div class="row">
-
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Company</h3>
-          <p>
-            A108 Adam Street <br>
-            New York, NY 535022<br>
-            United States <br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
-            <strong>Email:</strong> info@example.com<br>
-          </p>
+        <div class="row">
+            <!-- Start Single Widget  -->
+            <div class="col-md-3 col-sm-12">
+                <div class="axil-footer-widget">
+                    <div class="logo mb--30">
+                        <a href="index.html">
+                            <img class="light-logo" src="{{ asset($data->logo_footer) }}" alt="RinArt Logo">
+                        </a>
+                    </div>
+                    <div class="inner">
+                        <p>{!! $data->address !!}</p>
+                        <div class="social-share">
+                            <p><i class="fa fa-phone"></i>   {{ $data->phone_1 }}</p>
+                        </div>
+                        <br>
+                        <div class="social-share">
+                            <p><i class="fa fa-phone"></i>   {{ $data->phone_2 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Widget  -->
+            <!-- Start Single Widget  -->
+            <div class="col-md-3 col-sm-4">
+                <div class="axil-footer-widget">
+                    <h5 class="widget-title">{{ $data->about }}</h5>
+                    <div class="inner">
+                        <ul>
+                            <li><a href="#">{{ $data->about_1 }}</a></li>
+                            <li><a href="#">{{ $data->about_2 }}</a></li>
+                            <li><a href="#">{{ $data->about_3 }}</a></li>
+                            <li><a href="#">{{ $data->about_4 }}</a></li>
+                            <li><a href="#">{{ $data->about_5 }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Widget  -->
+            <!-- Start Single Widget  -->
+            <div class="col-md-3 col-sm-4">
+                <div class="axil-footer-widget">
+                    <h5 class="widget-title">{{ $data->account }}</h5>
+                    <div class="inner">
+                        <ul>
+                            <li><a href="#">{{ $data->account_1 }}</a></li>
+                            <li><a href="#">{{ $data->account_2 }}</a></li>
+                            <li><a href="#">{{ $data->account_3 }}</a></li>
+                            <li><a href="#">{{ $data->account_4 }}</a></li>
+                            <li><a href="#">{{ $data->account_5 }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Widget  -->
+            <!-- Start Single Widget  -->
+            <div class="col-md-3 col-sm-4">
+                <div class="axil-footer-widget">
+                    <h5 class="widget-title">{{ $data->support }}</h5>
+                    <div class="inner">
+                        <ul>
+                            <li><a href="#">{{ $data->support_1 }}</a></li>
+                            <li><a href="#">{{ $data->support_2 }}</a></li>
+                            <li><a href="#">{{ $data->support_3 }}</a></li>
+                            <li><a href="#">{{ $data->support_4 }}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End Single Widget  -->
         </div>
-
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-4 col-md-6 footer-newsletter">
-          <h4>Join Our Newsletter</h4>
-          <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-          <form action="" method="post">
-            <input type="email" name="email"><input type="submit" value="Subscribe">
-          </form>
-        </div>
-
-      </div>
     </div>
   </div>
-
-  <div class="container d-md-flex py-4">
-
-    <div class="mr-md-auto text-center text-md-left">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Company</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/company-free-html-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div>
-    <div class="social-links text-center text-md-right pt-3 pt-md-0">
-      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+  <!-- End Footer Top Area  -->
+  <!-- Start Copyright Area  -->
+  <div class="copyright-area copyright-default separator-top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-7 col-lg-12">
+                <div class="copyright-left d-flex flex-wrap justify-content-xl-start justify-content-center">
+                    <ul class="quick-link">
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                    <ul class="quick-link">
+                        <li>© 2022. All rights reserved by <a target="_blank" href="https://axilthemes.com/">RinArt</a>.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
+  <!-- End Copyright Area  -->
+
 </footer>

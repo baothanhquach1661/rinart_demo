@@ -33,7 +33,8 @@
 					<table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 						<thead>
 							<tr>
-								<th>Category Icon</th>
+								<th width="5%">Category Icon</th>
+								<th>Category Image</th>
 								<th>Category En</th>
 								<th>Category Vi</th>
 								<th>Action</th>
@@ -46,11 +47,14 @@
 								<td>
 									<span><i class="{{ $item->category_icon }}" aria-hidden="true"></i></span>
 								</td>
+								<td>
+									<img src="{{ asset($item->category_image) }}" style="width: 160px; height: 110px;" alt="{{ $item->category_name_en }}">
+								</td>
 								<td>{{ $item->category_name_en }}</td>
 								<td>{{ $item->category_name_vi }}</td>
 								<td>
 									<a href="{{ route('admin.category.edit', $item->id) }}" class="btn btn-info">Edit</a>
-									<a href="{{ route('admin.category.delete', $item->id) }}" class="btn btn-danger" onclick="return confirm('Once deleted, you will not be able to recover this imaginary file!');">Delete</a>
+									<a href="{{ route('admin.category.delete', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
 								</td>
 							</tr>
 							@endforeach

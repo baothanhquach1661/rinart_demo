@@ -19,8 +19,14 @@
         <link href="{{ asset('backend/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('backend/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
+        <!-- twitter-bootstrap-wizard css -->
+        <link rel="stylesheet" href="{{ asset('backend/assets/libs/twitter-bootstrap-wizard/prettify.css') }}">
+
         <!-- Responsive datatable examples -->
-        <link href="{{ asset('backend/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />  
+        <link href="{{ asset('backend/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+
+        <!-- Sweet Alert-->
+        <link href="{{ asset('backend/assets/libs/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />  
 
         <!-- Bootstrap Css -->
         <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -28,10 +34,23 @@
         <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend/assets/css/jason.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" >
+
+        <style type="text/css">
+            .bootstrap-tagsinput .tag{
+                margin-right: 2px;
+                background-color: #89C4E1;
+                color: #1A0000;
+                padding: 3px;
+                border-radius: 5px;E5E5CB
+            }
+        </style>
 
         
 
@@ -124,6 +143,12 @@
         <!-- init js -->
         <script src="{{ asset('backend/assets/js/pages/form-editor.init.js') }}"></script>
 
+        <!-- Sweet Alerts js -->
+        <script src="{{ asset('backend/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
+        <!-- Sweet alert init js-->
+        <script src="{{ asset('backend/assets/js/pages/sweet-alerts.init.js') }}"></script>
+
         <script>
             @if(Session::has('message'))
             var type = "{{ Session::get('alert-type','info') }}"
@@ -144,37 +169,40 @@
             @endif 
         </script>
 
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+        <script src="{{ asset('backend/assets/js/code.js') }}"></script>
 
         <script>
 
-            // $(function(){
-            //     $(document).on('click', '#delete', function(e){
-            //         e.preventDefault();
-            //         var link = $(this).attr("href");
+            $(function(){
+                $(document).on('click','#delete',function(e){
+                    e.preventDefault();
+                    var link = $(this).attr("href");
 
-            //         swal({
-            //           title: "Are you sure?",
-            //           text: "Once deleted, you will not be able to recover this imaginary file!",
-            //           icon: "warning",
-            //           buttons: true,
-            //           dangerMode: true,
-            //       })
-            //         .then((willDelete) => {
-            //           if (willDelete) {
-            //             swal("Poof! Your imaginary file has been deleted!", {
-            //               icon: "success",
-            //           });
-            //             form.submit();
-            //         } else {
-            //             swal("Your imaginary file is safe!");
-            //         }
-            //     });
+                          Swal.fire({
+                            title: 'Are you sure?',
+                            text: "Delete This Data?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              window.location.href = link
+                              Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                              )
+                            }
+                          }) 
 
-            //     });
-            // });
+
+                });
+
+              });
             
         </script>
 
@@ -188,6 +216,17 @@
 
         <script src="{{ asset('backend/assets/js/app.js') }}"></script>
 
+        <!-- twitter-bootstrap-wizard js -->
+        <script src="{{ asset('backend/assets/libs/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js') }}"></script>
+
+        <script src="{{ asset('backend/assets/libs/twitter-bootstrap-wizard/prettify.js') }}"></script>
+
+        <!-- form wizard init -->
+        <script src="{{ asset('backend/assets/js/pages/form-wizard.init.js')}}"></script>
+
+        <script src="{{ asset('backend/assets/js/app.js')}}"></script>
+
+        <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js" ></script>
 
 
 

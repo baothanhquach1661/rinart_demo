@@ -1,49 +1,207 @@
-<header id="header" class="fixed-top">
-  <div class="container d-flex align-items-center">
+<header class="header axil-header header-style-5">
 
-    <a href="index.html" class="logo mr-auto"><img src="rinart_logo.jpeg" alt="" class="img-fluid"></a>
+  <div class="axil-header-top">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="header-top-dropdown">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 
-    <h1 class="logo mr-auto"><a href="{{ url('/') }}"><span>Rin</span>Art</a></h1>
-    <!-- Uncomment below if you prefer to use an image logo -->
-    <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-    
+                          @if(session()->get('language') == 'vietnamese')
+                            Ngôn Ngữ
+                          @else
+                            Language
+                          @endif
 
-    <nav class="nav-menu d-none d-lg-block">
-      <ul>
-        <li class="active"><a href="index.html">Home</a></li>
+                        </button>
+                        <ul class="dropdown-menu">
 
-        <li class="drop-down"><a href="">About</a>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="testimonials.html">Testimonials</a></li>
-            <li class="drop-down"><a href="#">Deep Drop Down</a>
-              <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
+                          @if(session()->get('language') == 'vietnamese')
+                            <li><a class="dropdown-item" href="{{ route('english.language') }}">English</a></li>
+                          @else
+                            <li><a class="dropdown-item" href="{{ route('vietnamese.language') }}">Tiếng Việt</a></li>
+                          @endif
 
-        <li><a href="services.html">Services</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html">Contact</a></li>
-
-      </ul>
-    </nav><!-- .nav-menu -->
-
-    <div class="header-social-links">
-      <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-      <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-      <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
-      <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-12">
+                <div class="header-top-link">
+                    <ul class="quick-link">
+                        <li><a href="sign-in.html" class="fab fa-facebook-f" style="font-size: 18px;"></a></li>
+                        <li><a href="sign-in.html" class="fab fa-instagram" style="font-size: 18px;"></a></li>
+                        <li><a href="sign-in.html" class="fab fa-youtube" style="font-size: 18px;"></a></li>
+                        <li><a href="sign-in.html" class="fab fa-whatsapp" style="font-size: 18px;"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
   </div>
+  <!-- Start Mainmenu Area  -->
+  <div id="axil-sticky-placeholder"></div>
+  <div class="axil-mainmenu">
+    <div class="container">
+        <div class="header-navbar">
+            <div class="header-brand">
+                <a href="{{ url('/') }}" class="logo logo-dark">
+                    <img src="{{ asset('frontend/assets/images/logo/rinart_logo.png') }}" alt="Site Logo">
+                </a>
+                <a href="{{ url('/') }}" class="logo logo-light">
+                    <img src="{{ asset('frontend/assets/images/logo/rinart_logo.png') }}" alt="Site Logo">
+                </a>
+            </div>
+            <div class="header-main-nav">
+                <!-- Start Mainmanu Nav -->
+                <nav class="mainmenu-nav">
+                    <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
+                    <div class="mobile-nav-brand">
+                        <a href="index.html" class="logo">
+                            <img src="{{ asset('frontend/assets/images/logo/rinart_logo.png') }}" alt="Site Logo">
+                        </a>
+                    </div>
+                    <ul class="mainmenu">
+
+                      @if(session()->get('language') == 'vietnamese')
+                        <li><a href="{{ url('/') }}">Trang Chủ</a></li>
+
+                        <li><a href="{{ route('home.about') }}">Giới Thiệu</a></li>
+
+                        <li class="menu-item-has-children">
+                            <a href="{{ route('products.page') }}">Dịch Vụ</a>
+
+                            <!-- get categories data -->
+                              @php
+                                $categories = App\Models\Category::orderBy('category_name_vi', 'ASC')->get();
+                              @endphp
+                            <!-- end categories data -->
+
+                              <ul class="axil-submenu">
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a href="{{ url('/category/product/'.$category->id.'/'.$category->category_slug_vi) }}">{{ $category->category_name_vi }}</a>
+                                    </li>
+                                @endforeach <!-- end category foreach -->
+                              </ul>
+
+                        </li>
+
+                        <li><a href="about-us.html">Báo Giá</a></li>
+
+                        <li><a href="about-us.html">Liên Hệ</a></li>
+
+                      @else
+                        <!-- get categories data -->
+                          @php
+                            $categories = App\Models\Category::orderBy('category_name_en', 'ASC')->get();
+                          @endphp
+                        <!-- end categories data -->
+
+                        <li><a href="{{ url('/') }}">Home</a></li>
+
+                        <li><a href="{{ route('home.about') }}">About</a></li>
+
+                        <li class="menu-item-has-children">
+                            <a href="{{ route('products.page') }}">Services</a>
+                            <ul class="axil-submenu">
+
+                              @foreach($categories as $category)
+                                <li><a href="{{ url('/category/product/'.$category->id.'/'.$category->category_slug_vi) }}">{{ $category->category_name_en }}</a></li>
+                              @endforeach
+
+                            </ul>
+                        </li>
+
+                        <li><a href="about-us.html">Pricing</a></li>
+
+                        <li><a href="about-us.html">Contact</a></li>
+                      @endif
+
+                    </ul>
+                </nav>
+                <!-- End Mainmanu Nav -->
+            </div>
+            <div class="header-action">
+                <ul class="action-list">
+                    <li class="axil-search d-xl-block d-none">
+                        <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
+                        <button type="submit" class="icon wooc-btn-search">
+                            <i class="flaticon-magnifying-glass"></i>
+                        </button>
+                    </li>
+                    <li class="axil-search d-xl-none d-block">
+                        <a href="javascript:void(0)" class="header-search-icon" title="Search">
+                            <i class="flaticon-magnifying-glass"></i>
+                        </a>
+                    </li>
+                    <li class="wishlist">
+                        <a href="wishlist.html">
+                            <i class="flaticon-heart"></i>
+                        </a>
+                    </li>
+                    <li class="shopping-cart">
+                        <a href="#" class="cart-dropdown-btn">
+                            <span class="cart-count">3</span>
+                            <i class="flaticon-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <li class="my-account">
+                        <a href="javascript:void(0)">
+                            <i class="flaticon-person"></i>
+                        </a>
+                        <div class="my-account-dropdown">
+                            <span class="title">QUICKLINKS</span>
+                            <ul>
+                                <li>
+                                    <a href="my-account.html">My Account</a>
+                                </li>
+                                <li>
+                                    <a href="#">Initiate return</a>
+                                </li>
+                                <li>
+                                    <a href="#">Support</a>
+                                </li>
+                            </ul>
+                            <a href="{{ route('login') }}" class="axil-btn btn-bg-primary">Login</a>
+                            <div class="reg-footer text-center">No account yet? <a href="sign-up.html" class="btn-link">REGISTER HERE.</a></div>
+                        </div>
+                    </li>
+                    <li class="axil-mobile-toggle">
+                        <button class="menu-btn mobile-nav-toggler">
+                            <i class="flaticon-menu-2"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- End Mainmenu Area -->
+
+  @yield('ads')
+
 </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

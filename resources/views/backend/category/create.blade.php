@@ -4,6 +4,8 @@
 
 @section('admin')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 	<!-- start page title -->
 	    <div class="row">
 	        <div class="col-12">
@@ -28,7 +30,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form method="post" action="{{ route('admin.category.store') }}">
+                        <form method="post" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
                             @csrf
                             
                             <div>
@@ -68,6 +70,24 @@
                                     <input class="form-control" name="category_icon" type="text">
                                 </div>
 
+                                <label for="">Category Image (160x110)</label>
+                                <div class="mb-4">
+
+                                    @error('category_image')
+
+                                        <span class="text-danger">{{ $message }}</span>
+
+                                    @enderror
+
+                                    <input id="image" class="form-control" name="category_image" type="file">
+                                </div>
+
+                                <div class="mb-4">
+                                    <img id="showImage" class="img-thumbnail" alt="200x200" width="200" src="{{ (!empty($editData->profile_photo_path))? 
+                                                                url('upload/admin_images/'.$editData->profile_photo_path):
+                                                                url('upload/No_Image_Available.jpg') }}" data-holder-rendered="true">
+                                </div>
+
                                 <div class="mb-4" style="margin-top:10px;">
                                     <input type="submit" class="btn btn-primary btn-lg waves-effect waves-light" value="Create">
                                 </div>
@@ -82,9 +102,32 @@
         </div>
 
 
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#image').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#showImage').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+    });
+
+</script>
 
 
 @endsection
+
+
+
+
+
+
+
+
+
+
 
 
 

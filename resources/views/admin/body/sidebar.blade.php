@@ -16,14 +16,9 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Menu</li>
-
-                <li>
-                    <a href="/admin/dashboard" class="waves-effect">
-                        <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end"></span>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+                <a href="{{ route('admin.dashboard') }}" class="waves-effect">
+                    <li class="menu-title">Dashboard</li>
+                </a>
     
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
@@ -58,6 +53,41 @@
                     </ul>
                 </li>
 
+                <li class="menu-title">HomePage</li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-amazon-line"></i>
+                        <span>Slider</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.slider.create') }}">Create Slider</a></li>
+                        <li><a href="{{ route('admin.slider.index') }}">Manage Slides</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-amazon-line"></i>
+                        <span>About Page</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.about.setting') }}">Manage About Content</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-amazon-line"></i>
+                        <span>Site Setting</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.footer.site') }}">Footer Site</a></li>
+                        <li><a href="{{ route('admin.seo.setting') }}">SEO Setting</a></li>
+                        <li><a href="{{ route('admin.slider.index') }}">Manage Site</a></li>
+                    </ul>
+                </li>
+
                 <li class="menu-title">Products</li>
 
                 <li>
@@ -66,8 +96,8 @@
                         <span>All Products</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('admin.brand.index') }}">Create Product</a></li>
-                        <li><a href="{{ route('admin.brand.create') }}">Manage Products</a></li>
+                        <li><a href="{{ route('admin.product.create') }}">Create Product</a></li>
+                        <li><a href="{{ route('admin.product.index') }}">Manage Products</a></li>
                     </ul>
                 </li>
 

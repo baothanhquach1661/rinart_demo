@@ -1,13 +1,14 @@
 @extends('admin.admin_master')
 
+@section('title', 'Change Password')
+
 @section('admin')
 
-<div class="page-content">
     <div class="container-fluid">
         <div class="row">
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="/admin/dashboard">RinArt</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">RinArt</a></li>
                     <li class="breadcrumb-item active">Change Password</li>
                 </ol>
             </div>
@@ -51,8 +52,26 @@
             <!-- end col -->
         </div>
     </div>
-</div>
+
 
 
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

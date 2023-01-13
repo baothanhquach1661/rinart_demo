@@ -14,6 +14,7 @@ class SubCategoryController extends Controller
     public function index()
     {
         $subcat = SubCategory::latest()->get();
+
         return view('backend.subcategory.index', compact('subcat'));
     }
 
@@ -92,6 +93,14 @@ class SubCategoryController extends Controller
         );
 
         return redirect()->back()->with($notification); 
+    }
+
+
+    public function GetSubCategory($category_id){
+
+        $subcat = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name_en','ASC')->get();
+        return json_encode($subcat);
+
     }
 
 

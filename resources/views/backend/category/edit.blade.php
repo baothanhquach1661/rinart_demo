@@ -3,6 +3,7 @@
 @section('title', 'Update Brand')
 
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 	<!-- start page title -->
 	    <div class="row">
@@ -28,10 +29,11 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <form method="POST" action="{{ route('admin.category.update', $category->id) }}">
+                        <form method="POST" action="{{ route('admin.category.update', $category->id) }}" enctype="multipart/form-data">
                             @csrf
                             
                             <input type="hidden" name="id" value="{{ $category->id }}">
+                            <input type="hidden" name="old_image" value="{{ $category->category_image }}">
                             
                             <div>
                                 <label for="">Category Name (English)</label>
@@ -70,6 +72,24 @@
                                     <input class="form-control" value="{{ $category->category_icon }}" name="category_icon" type="text">
                                 </div>
 
+                                <label for="">Category Image</label>
+                                <div class="mb-4">
+
+                                    @error('category_image')
+
+                                        <span class="text-danger">{{ $message }}</span>
+
+                                    @enderror
+
+                                    <input id="image" class="form-control" value="" name="category_image" type="file">
+                                </div>
+
+                                <div class="mb-4">
+                                    <img id="showImage" class="img-thumbnail" alt="200x200" width="200" src="{{ (!empty($category->category_image))? 
+                                                                url($category->category_image):
+                                                                url('upload/No_Image_Available.jpg') }}" data-holder-rendered="true">
+                                </div>
+
                                 <div class="mb-4" style="margin-top:10px;">
                                     <input type="submit" class="btn btn-primary btn-lg waves-effect waves-light" value="Update">
                                 </div>
@@ -81,6 +101,21 @@
             </div>
             <!-- end col -->
         </div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#image').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#showImage').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+    });
+
+</script>
 
 
 @endsection
