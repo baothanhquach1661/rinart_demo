@@ -53,6 +53,17 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-amazon-line"></i>
+                        <span>Price List</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.pricing.setting') }}">All Price Lists</a></li>
+                        <li><a href="{{ route('admin.pricing.create') }}">Create Price list</a></li>
+                    </ul>
+                </li>
+
                 <li class="menu-title">HomePage</li>
 
                 <li>
@@ -69,10 +80,11 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="ri-amazon-line"></i>
-                        <span>About Page</span>
+                        <span>Pages</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.about.setting') }}">Manage About Content</a></li>
+                        <li><a href="{{ route('admin.contact.setting') }}">Manage Contact Content</a></li>
                     </ul>
                 </li>
 
@@ -84,7 +96,8 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.footer.site') }}">Footer Site</a></li>
                         <li><a href="{{ route('admin.seo.setting') }}">SEO Setting</a></li>
-                        <li><a href="{{ route('admin.slider.index') }}">Manage Site</a></li>
+                        <li><a href="{{ route('admin.video.setting') }}">Manage Video Content</a></li>
+                        <li><a href="#">Site Setting</a></li>
                     </ul>
                 </li>
 
@@ -98,6 +111,45 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.product.create') }}">Create Product</a></li>
                         <li><a href="{{ route('admin.product.index') }}">Manage Products</a></li>
+                    </ul>
+                </li>
+
+                {{-- <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-amazon-line"></i>
+                        <span>Coupons</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('admin.coupon.create') }}">Create Coupon</a></li>
+                        <li><a href="{{ route('admin.coupon.index') }}">Manage Coupons</a></li>
+                    </ul>
+                </li> --}}
+
+                 {{-- <li class="menu-title">Manage Orders</li>
+
+                 <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-amazon-line"></i>
+                        <span>Shipping Area</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('manage-shipping-division') }}">Shipping Division</a></li>
+                        <li><a href="{{ route('manage-shipping-district') }}">Shipping District</a></li>
+                        <li><a href="{{ route('manage-shipping-state') }}">Shipping State</a></li>
+                    </ul>
+                </li> --}}
+
+                <li class="menu-title">Messages</li>
+
+                 <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-amazon-line"></i>
+                        <span>Customer Messages</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('message.index') }}">All Messages</a></li>
+                        <li><a href="{{ route('message.not_read') }}">Not Read Messages</a></li>
+                        <li><a href="{{ route('message.read') }}">Read Messages</a></li>
                     </ul>
                 </li>
 

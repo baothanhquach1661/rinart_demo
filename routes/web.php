@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -11,10 +12,19 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\FooterController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\AboutController;
+use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingController;
+use App\Http\Controllers\Backend\VideoController;
 
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\PriceController;
+
+
+use App\Http\Controllers\User\WishlistController;
 
 
 
@@ -167,6 +177,34 @@ Route::middleware(['auth:admin'])->group(function(){
     });
 
 
+    // All Contact page routes
+    Route::prefix('admin/contact-page')->group(function (){
+
+        Route::get('/setting', [ContactController::class, 'contactSetting'])->name('admin.contact.setting');
+        Route::post('/update', [ContactController::class, 'updateContactSite'])->name('admin.contact.update');
+        
+    });
+
+
+    //-------------- All Pricing page routes
+    Route::prefix('admin/pricing-page')->group(function (){
+
+        Route::get('/setting', [PriceController::class, 'priceSetting'])->name('admin.pricing.setting');
+        Route::get('/create', [PriceController::class, 'create'])->name('admin.pricing.create');
+        Route::post('/store', [PriceController::class, 'store'])->name('price_list-store');
+        Route::get('/edit/{id}', [PriceController::class, 'edit'])->name('admin.pricing.edit');
+        Route::post('/update', [PriceController::class, 'update'])->name('price_list-update');
+        Route::post('/updateBanner', [PriceController::class, 'updateWithBanner'])->name('price_list-update-banner');
+        Route::post('/updateImage', [PriceController::class, 'updateImage'])->name('price_list-update-image');
+        Route::get('/delete/{id}', [PriceController::class, 'delete'])->name('admin.pricing.delete');
+
+        Route::get('/inactive/{id}', [PriceController::class, 'pricingInactive'])->name('admin.price_list.inactive');
+        Route::get('/active/{id}', [PriceController::class, 'pricingActive'])->name('admin.price_list.active');
+        
+        
+    });
+
+
     // All seo setting
     Route::prefix('admin/seo')->group(function (){
 
@@ -174,6 +212,86 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::post('/update', [SiteSettingController::class, 'seoSettingUpdate'])->name('admin.seo.update');
         
     });
+
+
+    // All coupons site setting
+    Route::prefix('admin/coupons')->group(function (){
+
+        Route::get('/setting', [CouponController::class, 'setting'])->name('admin.coupon.index');
+        Route::get('/create', [CouponController::class, 'create'])->name('admin.coupon.create');
+        Route::post('/store', [CouponController::class, 'store'])->name('admin.coupon.store');
+        Route::get('/edit/{id}', [CouponController::class, 'edit'])->name('admin.coupon.edit');
+        Route::post('/update', [CouponController::class, 'update'])->name('admin.coupon.update');
+        Route::get('/delete/{id}', [CouponController::class, 'delete'])->name('admin.coupon.delete');
+        
+    });
+    
+
+    // ----------- All shipping area site setting ------------//
+    // All shipping Division 
+    Route::prefix('admin/shipping-division')->group(function (){
+
+        Route::get('/setting', [ShippingController::class, 'setting'])->name('manage-shipping-division');
+        Route::get('/create', [ShippingController::class, 'create'])->name('admin.division.create');
+        Route::post('/store', [ShippingController::class, 'store'])->name('admin.division.store');
+        Route::get('/edit/{id}', [ShippingController::class, 'edit'])->name('admin.division.edit');
+        Route::post('/update', [ShippingController::class, 'update'])->name('admin.division.update');
+        Route::get('/delete/{id}', [ShippingController::class, 'delete'])->name('admin.division.delete');
+
+    });
+
+    // All shipping District 
+    Route::prefix('admin/shipping-district')->group(function (){
+
+        Route::get('/setting', [ShippingController::class, 'districtIndex'])->name('manage-shipping-district');
+        Route::get('/create', [ShippingController::class, 'districtCreate'])->name('admin.district.create');
+        Route::post('/store', [ShippingController::class, 'districtStore'])->name('admin.district.store');
+        Route::get('/edit/{id}', [ShippingController::class, 'districtEdit'])->name('admin.district.edit');
+        Route::post('/update/{id}', [ShippingController::class, 'districtUpdate'])->name('admin.district.update');
+        Route::get('/delete/{id}', [ShippingController::class, 'districtDelete'])->name('admin.district.delete');
+
+    });
+
+    // All shipping State 
+    Route::prefix('admin/shipping-state')->group(function (){
+
+        Route::get('/setting', [ShippingController::class, 'stateIndex'])->name('manage-shipping-state');
+        Route::get('/create', [ShippingController::class, 'stateCreate'])->name('admin.state.create');
+        Route::post('/store', [ShippingController::class, 'stateStore'])->name('admin.state.store');
+        Route::get('/edit/{id}', [ShippingController::class, 'stateEdit'])->name('admin.state.edit');
+        Route::post('/update/{id}', [ShippingController::class, 'statetUpdate'])->name('admin.state.update');
+        Route::get('/delete/{id}', [ShippingController::class, 'stateDelete'])->name('admin.state.delete');
+
+    });
+    // ----------- end shipping area site setting ------------//
+
+
+    // All Customer Messages 
+    Route::prefix('admin/customer-message')->group(function (){
+
+        Route::get('/index', [ContactController::class, 'customerMessage'])->name('message.index');
+        Route::get('/delete/{id}', [ContactController::class, 'messageDelete'])->name('message.delete');
+
+        Route::get('/inactive/{id}', [ContactController::class, 'inActive'])->name('message.inactive');
+        Route::get('/active/{id}', [ContactController::class, 'active'])->name('message.active');
+
+        Route::get('/content/{message_id}', [ContactController::class, 'messageDetail'])->name('message.detail');
+
+        Route::get('/read', [ContactController::class, 'readMessage'])->name('message.read');
+        Route::get('/not-read', [ContactController::class, 'notReadMessage'])->name('message.not_read');
+
+    });
+    // ----------- end Customer messages area site setting ------------//
+
+
+    // All Video Site  
+    Route::prefix('admin/video-setting')->group(function (){
+
+        Route::get('/setting', [VideoController::class, 'setting'])->name('admin.video.setting');
+        Route::post('/update', [VideoController::class, 'videoUpdate'])->name('admin.video.update');
+
+    });
+    // ----------- end Customer messages area site setting ------------//
 
 
 
@@ -191,23 +309,96 @@ Route::middleware(['auth:sanctum,web', config('jetstream.auth_session'), 'verifi
 
 
 
-/////// Frontend Area ////////
+/////------------ Frontend Area ------------////////
 
 
 Route::get('/language/english', [LanguageController::class, 'english'])->name('english.language');
 Route::get('/language/vietnamese', [LanguageController::class, 'vietnamese'])->name('vietnamese.language');
 
 
-/////// Product details page ////////
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'productDetails']);
+/// Product modal view /////
+Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjax']);
 
-/////// Products page ////////
+/// Add to Cart ///
+// Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+// /// Mini Cart preview ///
+// Route::get('/product/mini/cart', [CartController::class, 'miniCart']);
+
+// // Remove item in mini cart
+// Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'removeMiniCart']);
+
+
+// /// add to wishlist ///
+// Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishlist']);
+
+// /// Wishlist page + middleware + Cart Page///
+// Route::group(['prefix' => 'user', 'middleware' => ['user','auth'], 'namespace' => 'User'], 
+//     function(){
+
+//         Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+//         Route::get('/get-wishlist-product', [WishlistController::class, 'getWishlistProduct']);
+//         Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+
+// });
+
+
+// /// Cart Page   ///
+// Route::get('/cart', [CartController::class, 'cartIndex'])->name('cart');
+// Route::get('/user/get-cart-products', [CartController::class, 'getCartProduct']);
+// Route::get('/user/cart-remove/{id}', [CartController::class, 'removeCartProduct']);
+// Route::get('/cart-increment/{id}', [CartController::class, 'cartIncrement']);
+// Route::get('/cart-decrement/{id}', [CartController::class, 'cartDecrement']);
+
+
+
+
+
+
+
+
+
+// /// Coupon options ///
+// Route::post('/coupon-apply', [CartController::class, 'couponApply']);
+// Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+// Route::get('/coupon-remove', [CartController::class, 'couponRemove']);
+
+
+// /// Home Checkout page ///
+// Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+
+
+///////----------- Frontend Product Details Page --------------//////////
+Route::get('/{id}/{slug}', [IndexController::class, 'productDetails']);
+Route::get('/{id}/{slug}/{name}', [IndexController::class, 'productCatPage']);
+
+
+///////----------- Frontend Product Page --------------//////////
 Route::get('/product/all', [IndexController::class, 'productPage'])->name('products.page');
 
-Route::get('/category/product/{id}/{slug}', [IndexController::class, 'productCatPage']);
 
-/////// Home about page ////////
+///////----------- Frontend About Page --------------//////////
 Route::get('/about-rinart', [AboutController::class, 'homeAbout'])->name('home.about');
+
+
+///////----------- Frontend Contact Page --------------//////////
+Route::get('/contact', [ContactController::class, 'contactPage'])->name('contact.page');
+Route::post('/contact/send', [ContactController::class, 'storeMessage'])->name('store.message');
+
+
+///////----------- Frontend Pricing Page --------------//////////
+Route::get('/pricing', [PriceController::class, 'pricingPage'])->name('price_list');
+
+
+///////----------- Frontend Pricing Detail Page --------------//////////
+Route::get('/{id}/{slug}', [PriceController::class, 'priceDetail'])->name('price_list.detail');
+
+
+
+
+
+
+/////------------ End Frontend Area ------------////////
 
 
 

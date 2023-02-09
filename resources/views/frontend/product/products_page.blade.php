@@ -65,50 +65,9 @@
                         <div class="col-lg-9">
                             <div class="category-select">
 
-                                <!-- Start Single Select  -->
-                                <select class="single-select" onchange="location = this.value;">
-                                	<option value="{{ route('products.page') }}">Dịch Vụ</option>
-
-                                	@foreach($categories as $category)
-                                    	<option value="{{ url('/category/product/'.$category->id.'/'.$category->category_slug_vi) }}">
-								        	{{ $category->category_name_vi }}
-								       	</option>
-                                    @endforeach
-
-                                </select>
-
-                                <!-- End Single Select  -->
-
-                                <!-- Start Single Select  -->
-                                <select class="single-select">
-                                    <option><a href="#">Color</a></option>
-                                    <option><a href="#">Color2</a></option>
-                                </select>
-                                <!-- End Single Select  -->
-
-                                <!-- Start Single Select  -->
-                                <select class="single-select">
-                                    <option>Price Range</option>
-                                    <option>0 - 100</option>
-                                    <option>100 - 500</option>
-                                    <option>500 - 1000</option>
-                                    <option>1000 - 1500</option>
-                                </select>
-                                <!-- End Single Select  -->
+                                
 
                             </div>
-                        </div>
-                        <div class="col-lg-3">
-                            {{-- <div class="category-select mt_md--10 mt_sm--10 justify-content-lg-end">
-                                <!-- Start Single Select  -->
-                                <select class="single-select">
-                                    <option>Sort by Latest</option>
-                                    <option>Sort by Name</option>
-                                    <option>Sort by Price</option>
-                                    <option>Sort by Viewed</option>
-                                </select>
-                                <!-- End Single Select  -->
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -189,60 +148,24 @@
 <!-- End Axil Newsletter Area  -->
 
 
-<div class="service-area">
-    <div class="container">
-        <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service1.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Fast &amp; Secure Delivery</h6>
-                        <p>Tell about your service.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service2.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Money Back Guarantee</h6>
-                        <p>Within 10 days.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service3.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">24 Hour Return Policy</h6>
-                        <p>No question ask.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service4.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Pro Quality Support</h6>
-                        <p>24/7 Live support.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 
 
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

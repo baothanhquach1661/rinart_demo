@@ -21,7 +21,7 @@
 
                 <div class="slick-single-layout slick-slide">
                     <div class="categrie-product categrie-product-3" data-sal="zoom-out" data-sal-delay="100" data-sal-duration="500">
-                        <a href="#">
+                        <a href="{{ url('/'.$category->id.'/'.$category->category_slug_vi.'/'.$category->category_name_vi) }}">
                             <img class="img-fluid" src="{{ asset($category->category_image) }}" alt="{{ $category->category_name_vi }}">
                             <h6 class="cat-title">
 

@@ -18,7 +18,7 @@
                 <div class="slick-single-layout">
                     <div class="axil-product product-style-six">
                         <div class="thumbnail">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                            <a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">
                                 <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{ asset($product->product_thumbnail) }}" alt="{{ $product->product_name_vi }}">
                             </a>
                         </div>
@@ -26,16 +26,31 @@
                             <div class="inner">
                                 <div class="product-price-variant">
                                     <span class="price current-price" style="color: #FF0032;">
+
                                       @php
+                                        $formated_amount = number_format($product->discount_price);
                                         $selling_price = number_format($product->selling_price);
                                       @endphp
-                                        {{ $selling_price }} VND
+
+                                      @if($product->discount_price == NULL)
+                                        <span class="price current-price" style="color: rgba(0,0,0,.54);">
+                                          ₫{{ $selling_price }}
+                                        </span>
+                                      @else
+                                        <span class="price current-price" style="text-decoration: line-through;color: rgba(0,0,0,.54); font-size: 15px;">
+                                          ₫{{ $selling_price }}
+                                        </span>
+                                        <span class="price current-price" style="color: #ee4d2d;">
+                                          ₫{{ $formated_amount }}
+                                        </span>
+                                      @endif
+
                                     </span>
                                 </div>
-                                <h5 class="title"><a href="single-product-7.html">{{ $product->product_name_vi }}<span class="verified-icon"></span></a></h5>
+                                <h5 class="title"><a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_vi }}<span class="verified-icon"></span></a></h5>
                                 <div class="product-hover-action">
                                     <ul class="cart-action">
-                                        <li class="select-option"><a href="single-product-7.html">Mua Ngay</a></li>
+                                        <li class="select-option"><a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">Xem Thêm</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -47,4 +62,23 @@
           </div>
       </div>
   </div>
-</div
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -31,10 +31,12 @@
             <div class="col-lg-6 col-sm-6 col-12">
                 <div class="header-top-link">
                     <ul class="quick-link">
-                        <li><a href="sign-in.html" class="fab fa-facebook-f" style="font-size: 18px;"></a></li>
+                        <li><a href="https://www.facebook.com/intemnhanrinart" class="fab fa-facebook-f" style="font-size: 18px;"></a></li>
                         <li><a href="sign-in.html" class="fab fa-instagram" style="font-size: 18px;"></a></li>
                         <li><a href="sign-in.html" class="fab fa-youtube" style="font-size: 18px;"></a></li>
-                        <li><a href="sign-in.html" class="fab fa-whatsapp" style="font-size: 18px;"></a></li>
+                        <li>
+                            <a href="tel:0909888213" class="fab fa-whatsapp" style="font-size: 18px;"></a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -71,7 +73,7 @@
                         <li><a href="{{ route('home.about') }}">Giới Thiệu</a></li>
 
                         <li class="menu-item-has-children">
-                            <a href="{{ route('products.page') }}">Dịch Vụ</a>
+                            <a href="#">Dịch Vụ</a>
 
                             <!-- get categories data -->
                               @php
@@ -82,16 +84,16 @@
                               <ul class="axil-submenu">
                                 @foreach($categories as $category)
                                     <li>
-                                        <a href="{{ url('/category/product/'.$category->id.'/'.$category->category_slug_vi) }}">{{ $category->category_name_vi }}</a>
+                                        <a href="{{ url('/'.$category->id.'/'.$category->category_slug_vi.'/'.$category->category_name_vi) }}">{{ $category->category_name_vi }}</a>
                                     </li>
                                 @endforeach <!-- end category foreach -->
                               </ul>
 
                         </li>
 
-                        <li><a href="about-us.html">Báo Giá</a></li>
+                        <li><a href="{{ route('price_list') }}">Báo Giá</a></li>
 
-                        <li><a href="about-us.html">Liên Hệ</a></li>
+                        <li><a href="{{ route('contact.page') }}">Liên Hệ</a></li>
 
                       @else
                         <!-- get categories data -->
@@ -115,9 +117,9 @@
                             </ul>
                         </li>
 
-                        <li><a href="about-us.html">Pricing</a></li>
+                        <li><a href="{{ route('price_list') }}">Pricing</a></li>
 
-                        <li><a href="about-us.html">Contact</a></li>
+                        <li><a href="{{ route('contact.page') }}">Contact</a></li>
                       @endif
 
                     </ul>
@@ -126,28 +128,35 @@
             </div>
             <div class="header-action">
                 <ul class="action-list">
-                    <li class="axil-search d-xl-block d-none">
+
+                    <!-- Search area -->
+                    {{-- <li class="axil-search d-xl-block d-none">
                         <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
                         <button type="submit" class="icon wooc-btn-search">
                             <i class="flaticon-magnifying-glass"></i>
                         </button>
-                    </li>
-                    <li class="axil-search d-xl-none d-block">
+                    </li> --}}
+
+
+                    <!-- Start User login wishlist cart Area -->
+                    {{-- <li class="axil-search d-xl-none d-block">
                         <a href="javascript:void(0)" class="header-search-icon" title="Search">
                             <i class="flaticon-magnifying-glass"></i>
                         </a>
                     </li>
                     <li class="wishlist">
-                        <a href="wishlist.html">
+                        <a href="{{ route('wishlist') }}">
                             <i class="flaticon-heart"></i>
                         </a>
                     </li>
+
                     <li class="shopping-cart">
                         <a href="#" class="cart-dropdown-btn">
-                            <span class="cart-count">3</span>
+                            <span class="cart-count" id="cart_qty"></span>
                             <i class="flaticon-shopping-cart"></i>
                         </a>
                     </li>
+                    
                     <li class="my-account">
                         <a href="javascript:void(0)">
                             <i class="flaticon-person"></i>
@@ -156,7 +165,7 @@
                             <span class="title">QUICKLINKS</span>
                             <ul>
                                 <li>
-                                    <a href="my-account.html">My Account</a>
+                                    <a href="{{ url('/dashboard') }}">My Account</a>
                                 </li>
                                 <li>
                                     <a href="#">Initiate return</a>
@@ -173,7 +182,10 @@
                         <button class="menu-btn mobile-nav-toggler">
                             <i class="flaticon-menu-2"></i>
                         </button>
-                    </li>
+                    </li> --}}
+                    <!-- End User login wishlist cart Area -->
+
+
                 </ul>
             </div>
         </div>

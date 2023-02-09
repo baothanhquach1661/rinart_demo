@@ -47,7 +47,10 @@ class IndexController extends Controller
         $feature_products = Product::where([
                                             ['status', '=', '1'],
                                             ['featured', '=', '1'] ])->inRandomOrder()->orderBy('id', 'ASC')->get();
-        return view('frontend.product.product_details', compact('products', 'multi_img', 'feature_products'));
+        $cat_id = $products->category_id;
+        $related_products = Product::where('category_id', $cat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
+
+        return view('frontend.product.product_details', compact('products', 'multi_img', 'feature_products', 'related_products'));
     }
 
 
@@ -61,13 +64,16 @@ class IndexController extends Controller
     }
 
 
-    public function productCatPage($id, $slug)
+    public function productCatPage($id, $slug, $name)
     {
         $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
 
         $categories = Category::orderBy('category_name_vi', 'ASC')->get();
 
-        return view('frontend.product.category_products', compact('products', 'categories'));
+        //$title = ucwords(str_replace('-', ' ', $slug));
+        $title = $name;
+
+        return view('frontend.product.category_products', compact('products', 'categories', 'title'));
     }
 
 
@@ -134,6 +140,16 @@ class IndexController extends Controller
             return redirect()->back()->with($notification);
         }
 
+    }
+
+    /// Product view by Ajax ///
+    public function productViewAjax($id)
+    {
+        $product = Product::findOrFail($id);
+
+        return response()->json(array(
+            'product' => $product,
+        ));
     }
 
 

@@ -88,6 +88,7 @@
 
                                 <div class="mb-4" style="margin-top:10px;">
                                     <input type="submit" class="btn btn-primary btn-lg waves-effect waves-light" value="Create">
+                                    <a href="{{url()->previous()}}" class="btn btn-dark btn-lg waves-effect waves-dark">Cancel</a>
                                 </div>
                             </div>
                         </form>

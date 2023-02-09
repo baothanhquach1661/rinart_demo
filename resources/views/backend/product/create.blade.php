@@ -108,7 +108,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Product Name En</label>
                                         <div>
-                                            <input name="product_name_en" type="text" class="form-control"/>
+                                            <input name="product_name_en" type="text" class="form-control" required/>
 
                                             @error('product_name_en')
 
@@ -122,7 +122,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Product Name Vi</label>
                                         <div>
-                                            <input name="product_name_vi" type="text" class="form-control"/>
+                                            <input name="product_name_vi" type="text" class="form-control" required/>
 
                                             @error('product_name_en')
 
@@ -135,7 +135,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Product Code</label>
                                         <div>
-                                            <input name="product_code" type="text" class="form-control"/>
+                                            <input name="product_code" type="text" class="form-control" required/>
 
                                             @error('product_code')
 
@@ -154,7 +154,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Selling Price</label>
                                         <div>
-                                            <input name="selling_price" type="text" class="form-control" placeholder=""/>
+                                            <input name="selling_price" type="text" class="form-control" required/>
 
                                             @error('selling_price')
 
@@ -181,7 +181,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Quantity</label>
                                         <div>
-                                            <input name="product_qty" type="text" class="form-control"/>
+                                            <input name="product_qty" type="text" class="form-control"required />
 
                                             @error('product_qty')
 
@@ -247,7 +247,7 @@
                                     <div class="col-md-6">
                                         <label class="label-margin">Product Thumbnail (630x630)</label>
                                         <div>
-                                            <input name="product_thumnail" type="file" class="form-control" onChange="mainThumbUrl(this)"/>
+                                            <input name="product_thumnail" type="file" class="form-control" onChange="mainThumbUrl(this)" required/>
 
                                             <img src="" id="mainThmb">
 
@@ -262,7 +262,7 @@
                                     <div class="col-md-6">
                                         <label class="label-margin">Multiple Image (630x630)</label>
                                         <div>
-                                            <input name="multi_imgs[]" type="file" class="form-control" multiple="" id="multiImg"/>
+                                            <input name="multi_imgs[]" type="file" class="form-control" multiple="" id="multiImg" required/>
 
                                             @error('product_image')
 

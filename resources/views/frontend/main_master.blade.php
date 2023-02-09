@@ -7,7 +7,7 @@
     @endphp
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>RinArt || @yield('title')</title>
+    <title>RinArt | @yield('title')</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="{{ $seo->meta_description }}">
     <meta name="author" content="{{ $seo->meta_author }}">
@@ -31,11 +31,15 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/vendor/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/vendor/base.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/rinartstyle.css') }}">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 
+    
+
+
     <script>
-        {{ $seo->google_analytics }}
+        // {{ $seo->google_analytics }}
     </script>
 
 </head>
@@ -285,99 +289,71 @@
     <!-- Header Search Modal End -->
 
 
+    {{-- start mini cart with ajax --}}
 
-
-    <div class="cart-dropdown" id="cart-dropdown">
+    {{-- <div class="cart-dropdown" id="cart-dropdown">
         <div class="cart-content-wrap">
             <div class="cart-header">
                 <h2 class="header-title">Cart review</h2>
-                <button class="cart-close sidebar-close"><i class="fas fa-times"></i></button>
+                <button class="cart-close sidebar-close" id="closeModel"><i class="fas fa-times"></i></button>
             </div>
-            <div class="cart-body">
-                <ul class="cart-item-list">
-                    <li class="cart-item">
-                        <div class="item-img">
-                            <a href="single-product.html"><img src="{{ asset('frontend/assets/images/product/electric/product-01.png') }}" alt="Commodo Blown Lamp"></a>
-                            <button class="close-btn"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="item-content">
-                            <div class="product-rating">
-                                <span class="icon">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-                                <span class="rating-number">(64)</span>
-                            </div>
-                            <h3 class="item-title"><a href="single-product-3.html">Wireless PS Handler</a></h3>
-                            <div class="item-price"><span class="currency-symbol">$</span>155.00</div>
-                            <div class="pro-qty item-quantity">
-                                <input type="number" class="quantity-input" value="15">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="cart-item">
-                        <div class="item-img">
-                            <a href="single-product-2.html"><img src="{{ asset('frontend/assets/images/product/electric/product-02.png') }}" alt="Commodo Blown Lamp"></a>
-                            <button class="close-btn"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="item-content">
-                            <div class="product-rating">
-                                <span class="icon">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-                                <span class="rating-number">(4)</span>
-                            </div>
-                            <h3 class="item-title"><a href="single-product-2.html">Gradient Light Keyboard</a></h3>
-                            <div class="item-price"><span class="currency-symbol">$</span>255.00</div>
-                            <div class="pro-qty item-quantity">
-                                <input type="number" class="quantity-input" value="5">
-                            </div>
-                        </div>
-                    </li>
-                    <li class="cart-item">
-                        <div class="item-img">
-                            <a href="single-product-3.html"><img src="{{ asset('frontend/assets/images/product/electric/product-03.png') }}" alt="Commodo Blown Lamp"></a>
-                            <button class="close-btn"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="item-content">
-                            <div class="product-rating">
-                                <span class="icon">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-							</span>
-                                <span class="rating-number">(6)</span>
-                            </div>
-                            <h3 class="item-title"><a href="single-product.html">HD CC Camera</a></h3>
-                            <div class="item-price"><span class="currency-symbol">$</span>200.00</div>
-                            <div class="pro-qty item-quantity">
-                                <input type="number" class="quantity-input" value="100">
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+
+            <div id="miniCart">
+                
             </div>
+
             <div class="cart-footer">
                 <h3 class="cart-subtotal">
-                    <span class="subtotal-title">Subtotal:</span>
-                    <span class="subtotal-amount">$610.00</span>
+                    <span class="subtotal-title">Subtotal (vnd):</span>
+                    <span class="subtotal-amount" id="cart_total" style="color: red;"></span>
                 </h3>
                 <div class="group-btn">
-                    <a href="cart.html" class="axil-btn btn-bg-primary viewcart-btn">View Cart</a>
-                    <a href="checkout.html" class="axil-btn btn-bg-secondary checkout-btn">Checkout</a>
+                    <input type="hidden" id="product_id">
+                    <a href="{{ route('cart') }}" class="axil-btn btn-bg-secondary checkout-btn">Xem Giỏ Hàng</a>
+
+                    <a href="{{ route('checkout') }}" class="axil-btn btn-bg-primary viewcart-btn">
+                        Thanh Toán
+                    </a>
+                    
                 </div>
             </div>
         </div>
+    </div> --}}
+
+    {{-- end mini cart with ajax --}}
+
+    <div class="social-button">
+        <div class="social-button-content">
+            <a href="tel:0909888213" class="call-icon" rel="nofollow">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <div class="animated alo-circle"></div>
+                <div class="animated alo-circle-fill  "></div>
+                <span>Hotline: 0909 888 213</span>
+            </a>
+
+            {{-- <a href="sms:0981481368" class="sms">
+                <i class="fa fa-weixin" aria-hidden="true"></i>
+                <span>SMS: 098 148 1368</span>
+            </a> --}}
+
+            <a href="https://www.facebook.com/intemnhanrinart" class="mes">
+                <img src="{{ asset('frontend/assets/images/icons8-facebook-48.png') }}" alt="">
+                <span>Hotline: 0909 888 213</span>
+            </a>
+            <a href="http://zalo.me/0981481368" class="zalo">
+                <img src="{{ asset('frontend/assets/images/icons8-zalo-48.png') }}" alt="">
+                <span>Hotline: 0909 888 213</span>
+            </a>
+        </div>
+
+        <a class="user-support">
+            <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+            <div class="animated alo-circle"></div>
+            <div class="animated alo-circle-fill"></div>
+        </a>
     </div>
+
+
 
     <!-- JS
 ============================================ -->
@@ -401,8 +377,18 @@
 
     <!-- Main JS -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+    {{-- <script src="{{ asset('backend/assets/js/code.js') }}"></script> --}}
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+ 
+    <!-- Sweet Alerts js -->
+    <script src="{{ asset('backend/assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <!-- Sweet alert init js-->
+    <script src="{{ asset('backend/assets/js/pages/sweet-alerts.init.js') }}"></script>
+
     <script>
         @if(Session::has('message'))
         var type = "{{ Session::get('alert-type','info') }}"
@@ -423,6 +409,47 @@
         @endif 
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.user-support').click(function(event) {
+                $('.social-button-content').slideToggle();
+            });
+        });
+    </script>
+
+
+
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

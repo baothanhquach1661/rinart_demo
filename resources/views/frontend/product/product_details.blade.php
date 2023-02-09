@@ -64,7 +64,7 @@
 				<div class="col-lg-6 mb--40">
 					<div class="single-product-content">
 						<div class="inner">
-							<h2 class="product-title">
+							<h2 class="product-title" id="pname">
 								@if(session()->get('language') == 'vietnamese')
 									{{ $products->product_name_vi }}
 								@else
@@ -72,25 +72,24 @@
 								@endif
 							</h2>
 
+
 							@php
-                              $amount = $products->selling_price - $products->discount_price;
-                              $formated_amount = number_format($amount);
+                              $formated_amount = number_format($products->discount_price);
                               $selling_price = number_format($products->selling_price);
                             @endphp
 
 
 							<div class="price-amount price-offer-amount">
 								<span class="price old-price">₫{{ $selling_price }}</span>
-								<span class="price current-price" style="color:#ee4d2d;">₫{{ $formated_amount }}</span>
+								<span id="pprice" class="price current-price" style="color:#ee4d2d;">₫{{ $formated_amount }}</span>
 							</div>
+
+
 							<div class="product-rating">
-								<div class="star-rating">
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
-								</div>
+								<span id="pcode">SKU | {{ $products->product_code }}</span>
+								{{-- this line for product quantity add to cart --}}
+								<input type="hidden" id="qty" value="1" min="1">
+								{{-- this line for product quantity add to cart --}}
 							</div>
 
 							@if(session()->get('language') == 'vietnamese')
@@ -107,8 +106,19 @@
 
 									<!-- Start Product Action  -->
 									<ul class="product-action action-style-two d-flex-center mb--0">
-										<li class="add-to-cart"><a href="https://www.amazon.com/" class="axil-btn btn-bg-primary">Thêm vào giỏ hàng</a></li>
-										<li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
+										<li class="add-to-cart">
+											<input type="hidden" id="product_id" value="{{ $products->id }}" min="1">
+											<form action="tel:0909888213">
+												<button type="submit" class="axil-btn btn-bg-primary viewcart-btn">Gọi 0909888213 để đặt hàng</button>
+											</form>
+										</li>
+
+										{{-- <li class="wishlist">
+											<button id="{{ $products->id }}" type="button" onclick="addToWishlist(this.id)" class="axil-btn wishlist-btn" title="Wishlist">
+												<i class="far fa-heart"></i>
+											</button>
+										</li> --}}
+
 									</ul>
 									<!-- End Product Action  -->
 
@@ -130,7 +140,10 @@
 
 									<!-- Start Product Action  -->
 									<ul class="product-action action-style-two d-flex-center mb--0">
-										<li class="add-to-cart"><a href="https://www.amazon.com/" class="axil-btn btn-bg-primary">Add To Cart</a></li>
+										<li class="add-to-cart">
+											<input type="hidden" id="product_id" value="{{ $products->id }}" min="1">
+											<button type="submit" onclick="addToCart()" class="axil-btn btn-bg-primary">Add To Cart</button>
+										</li>
 										<li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
 									</ul>
 									<!-- End Product Action  -->
@@ -212,19 +225,19 @@
 							<ul class="pro-des-features">
 								<li class="single-features">
 									<div class="icon">
-										<img src="assets/images/product/product-thumb/icon-3.png" alt="icon">
+										<img src="{{ asset('frontend/assets/images/product/product-thumb/icon-3.png') }}" alt="icon">
 									</div>
 									Easy Returns
 								</li>
 								<li class="single-features">
 									<div class="icon">
-										<img src="assets/images/product/product-thumb/icon-2.png" alt="icon">
+										<img src="{{ asset('frontend/assets/images/product/product-thumb/icon-2.png') }}" alt="icon">
 									</div>
 									Quality Service
 								</li>
 								<li class="single-features">
 									<div class="icon">
-										<img src="assets/images/product/product-thumb/icon-1.png" alt="icon">
+										<img src="{{ asset('frontend/assets/images/product/product-thumb/icon-1.png') }}" alt="icon">
 									</div>
 									Original Product
 								</li>
@@ -242,6 +255,67 @@
 	@endif
 </div>
 <!-- End Shop Area  -->
+
+
+<!-- Start Related Product Area  -->
+<div class="axil-product-area bg-color-white axil-section-gap pb--50 pb_sm--30">
+	<div class="container">
+		<div class="section-title-wrapper">
+			<span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i>Sản Phẩm Liên Quan</span>
+			<h3 class="title">Mới Nhất</h3>
+		</div>
+		<div class="recent-product-activation slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
+
+			@foreach($related_products as $product)
+				<div class="slick-single-layout">
+					<div class="axil-product">
+						<div class="thumbnail">
+							<a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+								<img src="{{ asset($product->product_thumbnail) }}" alt="{{ $product->product_name_vi }}">
+							</a>
+
+							@php
+                              $amount = $product->selling_price - $product->discount_price;
+                              $formated_amount = number_format($amount);
+                              $selling_price = number_format($product->selling_price);
+                            @endphp
+
+							<div class="product-hover-action">
+								<ul class="cart-action">
+									<li class="select-option"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">Xem Thêm</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="product-content">
+							<div class="inner">
+								<h5 class="title"><a href="single-product.html">{{ $product->product_name_vi }}</a></h5>
+								<div class="product-price-variant">
+
+									@if($product->discount_price == NULL)
+                                        <span class="price current-price" style="color: rgba(0,0,0,.54);">
+                                          ₫{{ $selling_price }}
+                                        </span>
+                                      @else
+                                        <span class="price current-price" style="text-decoration: line-through;color: rgba(0,0,0,.54); font-size: 15px;">
+                                          ₫{{ $selling_price }}
+                                        </span>
+                                        <span class="price current-price" style="color: #ee4d2d;">
+                                          ₫{{ $formated_amount }}
+                                        </span>
+                                      @endif
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			<!-- End .slick-single-layout -->
+			@endforeach
+
+		</div>
+	</div>
+</div>
+<!-- End Recently Viewed Product Area  -->
 
 
 <!-- Start Recently Viewed Product Area  -->
@@ -305,77 +379,12 @@
 <!-- End Recently Viewed Product Area  -->
 
 
-<!-- Start Axil Newsletter Area  -->
-<div class="axil-newsletter-area axil-section-gap pt--0">
-	<div class="container">
-		<div class="etrade-newsletter-wrapper bg_image bg_image--5">
-			<div class="newsletter-content">
-				<span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
-				<h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
-				<div class="input-group newsletter-form">
-					<div class="position-relative newsletter-inner mb--15">
-						<input placeholder="example@gmail.com" type="text">
-					</div>
-					<button type="submit" class="axil-btn mb--15">Subscribe</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End .container -->
-</div>
-<!-- End Axil Newsletter Area  -->
+
+<!-- Start Most Sold Product Area  -->
+    @include('frontend.body.video')
+<!-- End Most Sold Product Area  -->
 
 
-<div class="service-area">
-    <div class="container">
-        <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service1.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Fast &amp; Secure Delivery</h6>
-                        <p>Tell about your service.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service2.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Money Back Guarantee</h6>
-                        <p>Within 10 days.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service3.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">24 Hour Return Policy</h6>
-                        <p>No question ask.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service4.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Pro Quality Support</h6>
-                        <p>24/7 Live support.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 
@@ -383,3 +392,19 @@
 
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

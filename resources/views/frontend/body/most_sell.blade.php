@@ -18,16 +18,15 @@
                 <div class="col">
                     <div class="axil-product-list product-list-style-2">
                         <div class="thumbnail">
-                            <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                            <a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">
                                 <img data-sal="zoom-in" data-sal-delay="100" data-sal-duration="1500" src="{{ asset($product->product_thumbnail) }}" alt="NFT">
                             </a>
                         </div>
                         <div class="product-content">
-                            <h6 class="product-title"><a href="single-product-7.html">{{ $product->product_name_vi }}<span class="verified-icon"></a></h6>
+                            <h6 class="product-title"><a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_vi }}<span class="verified-icon"></a></h6>
 
                             @php
-                              $amount = $product->selling_price - $product->discount_price;
-                              $formated_amount = number_format($amount);
+                              $formated_amount = number_format($product->discount_price);
                               $selling_price = number_format($product->selling_price);
                             @endphp
 
@@ -47,7 +46,7 @@
                             </div>
 
                             <div class="product-cart">
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}" class="cart-btn">Xem Thêm</a>
+                                <a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}" class="cart-btn">Xem Thêm</a>
                             </div>
                         </div>
                     </div>

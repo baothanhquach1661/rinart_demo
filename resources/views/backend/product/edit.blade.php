@@ -130,7 +130,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Product Code</label>
                                         <div>
-                                            <input name="product_code" type="text" class="form-control" value="{{ $products->product_code }}"/>
+                                            <input name="product_code" type="text" class="form-control" value="{{ $products->product_code }}" required/>
 
                                             @error('product_code')
 
@@ -149,7 +149,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Selling Price</label>
                                         <div>
-                                            <input name="selling_price" type="text" class="form-control" value="{{ $products->selling_price }}"/>
+                                            <input name="selling_price" type="text" class="form-control" value="{{ $products->selling_price }}" required/>
 
                                             @error('selling_price')
 
@@ -176,7 +176,7 @@
                                     <div class="col-md-4">
                                         <label class="label-margin">Quantity</label>
                                         <div>
-                                            <input name="product_qty" type="text" class="form-control" value="{{ $products->product_qty }}"/>
+                                            <input name="product_qty" type="text" class="form-control" value="{{ $products->product_qty }}" required/>
 
                                             @error('product_qty')
 
@@ -406,7 +406,8 @@
                                     </div>
                                 </div>      
 
-                            </div><!--  end col md 3         -->    
+                            </div><!--  end col md 3         -->   
+
                             @endforeach
 
                         </div>          

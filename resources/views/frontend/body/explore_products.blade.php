@@ -39,18 +39,18 @@
                     <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30 product {{ $product->category->category_slug_en }}">
                         <div class="axil-product product-style-one">
                             <div class="thumbnail">
-                                <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en) }}">
+                                <a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">
                                     <img data-sal="fade" data-sal-delay="100" data-sal-duration="1500" src="{{ asset($product->product_thumbnail) }}" alt="{{ $product->product_name_vi }}">
                                 </a>
                                 <div class="product-hover-action">
                                     <ul class="cart-action">
-                                        <li class="select-option"><a href="single-product-7.html">Mua Ngay</a></li>
+                                        <li class="select-option"><a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">Xem Thêm</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="product-content">
                                 <div class="inner">
-                                    <h5 class="title"><a href="single-product-7.html">
+                                    <h5 class="title"><a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">
 
                                       @if(session()->get('language') == 'vietnamese')
                                         {{ $product->product_name_vi }}
@@ -62,8 +62,7 @@
                                     </h5>
 
                                     @php
-                                      $amount = $product->selling_price - $product->discount_price;
-                                      $formated_amount = number_format($amount);
+                                      $formated_amount = number_format($product->discount_price);
                                       $selling_price = number_format($product->selling_price);
                                     @endphp
 

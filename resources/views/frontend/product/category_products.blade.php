@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 
 @section('title')
-	Shop All
+	{{ $title }}
 @endsection
 
 @section('ads')
@@ -41,10 +41,9 @@
                         <li class="axil-breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                         <li class="separator"></li>
 
-                        <li class="axil-breadcrumb-item active" aria-current="page">Các Dịch Vụ</li>
+                        <li class="axil-breadcrumb-item active" aria-current="page">{{ $title }}</li>
 
                     </ul>
-                    <h1 class="title">Explore All Products</h1>
                 </div>
             </div>
             <div class="col-lg-6 col-md-4">
@@ -55,6 +54,8 @@
     </div>
 </div>
 <!-- End Breadcrumb Area  -->
+
+
 
 
 <!-- Start Shop Area  -->
@@ -68,50 +69,17 @@
                             <div class="category-select">
 
                                 <!-- Start Single Select  -->
-                                <select class="single-select" onchange="location = this.value;">
-
-                                    <option value="{{ route('products.page') }}">Tất cả</option>
+                                {{-- <select class="single-select" onchange="location = this.value;">
 
                                 	@foreach($categories as $category)
                                     	<option value="{{ url('/category/product/'.$category->id.'/'.$category->category_slug_vi) }}">
 								        	{{ $category->category_name_vi }}
 								       	</option>
                                     @endforeach
+                                </select> --}}
 
-                                </select>
-
-                                <!-- End Single Select  -->
-
-                                <!-- Start Single Select  -->
-                                <select class="single-select">
-                                    <option><a href="#">Color</a></option>
-                                    <option><a href="#">Color2</a></option>
-                                </select>
-                                <!-- End Single Select  -->
-
-                                <!-- Start Single Select  -->
-                                <select class="single-select">
-                                    <option>Price Range</option>
-                                    <option>0 - 100</option>
-                                    <option>100 - 500</option>
-                                    <option>500 - 1000</option>
-                                    <option>1000 - 1500</option>
-                                </select>
-                                <!-- End Single Select  -->
 
                             </div>
-                        </div>
-                        <div class="col-lg-3">
-                            {{-- <div class="category-select mt_md--10 mt_sm--10 justify-content-lg-end">
-                                <!-- Start Single Select  -->
-                                <select class="single-select">
-                                    <option>Sort by Latest</option>
-                                    <option>Sort by Name</option>
-                                    <option>Sort by Price</option>
-                                    <option>Sort by Viewed</option>
-                                </select>
-                                <!-- End Single Select  -->
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -170,78 +138,12 @@
 </div>
 <!-- End Shop Area  -->
 
-
-<!-- Start Axil Newsletter Area  -->
-<div class="axil-newsletter-area axil-section-gap pt--0">
-	<div class="container">
-		<div class="etrade-newsletter-wrapper bg_image bg_image--5">
-			<div class="newsletter-content">
-				<span class="title-highlighter highlighter-primary2"><i class="fas fa-envelope-open"></i>Newsletter</span>
-				<h2 class="title mb--40 mb_sm--30">Get weekly update</h2>
-				<div class="input-group newsletter-form">
-					<div class="position-relative newsletter-inner mb--15">
-						<input placeholder="example@gmail.com" type="text">
-					</div>
-					<button type="submit" class="axil-btn mb--15">Subscribe</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End .container -->
-</div>
-<!-- End Axil Newsletter Area  -->
+    <!-- Start Most Sold Product Area  -->
+        @include('frontend.body.video')
+    <!-- End Most Sold Product Area  -->
 
 
-<div class="service-area">
-    <div class="container">
-        <div class="row row-cols-xl-4 row-cols-sm-2 row-cols-1 row--20">
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service1.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Fast &amp; Secure Delivery</h6>
-                        <p>Tell about your service.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service2.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Money Back Guarantee</h6>
-                        <p>Within 10 days.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service3.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">24 Hour Return Policy</h6>
-                        <p>No question ask.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="service-box service-style-2">
-                    <div class="icon">
-                        <img src="{{ asset('frontend/assets/images/icons/service4.png') }}" alt="Service">
-                    </div>
-                    <div class="content">
-                        <h6 class="title">Pro Quality Support</h6>
-                        <p>24/7 Live support.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 
@@ -249,3 +151,33 @@
 
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
