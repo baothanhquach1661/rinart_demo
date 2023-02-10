@@ -5,7 +5,10 @@
 	        <div class="row align-items-center">
 	            <div class="col-xl-6 col-lg-6">
 	                <div class="main-slider-content">
-	                    <span class="subtitle"><i class="fas fa-fire"></i>{{ $slider->title }}</span>
+	                	@php
+	                		$custom_text = App\Models\CustomText::find(1);
+	                	@endphp
+	                    <span class="subtitle" style="font-size: {{ $custom_text->text_1 }}px; color: {{ $custom_text->text_1_color }};"><i class="fas fa-fire"></i>{{ $slider->title }}</span>
 	                    <h1 class="title">{{ $slider->short_description }}</h1>
 	                    <div class="shop-btn">
 	                    	<form action="tel:0909888213">

@@ -104,41 +104,48 @@
 
     						<!-- Start Single Post List  -->
     						<div class="content-blog post-list-view mb--20">
+
     							<form method="POST" action="{{ route('store.message') }}">
                                     @csrf
 
                                     <div class="row row--10">
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="contact-name">Name <span>*</span></label>
-                                                <input type="text" name="name" id="name">
+                                                <label for="contact-name">Tên <span>*</span></label>
+                                                <input type="text" name="name" id="name" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="contact-phone">Phone <span>*</span></label>
-                                                <input type="text" name="phone" id="phone">
+                                                <label for="contact-phone">Số điện thoại <span>*</span></label>
+                                                <input type="text" name="phone" id="phone" required>
+                                                @error('phone')
+
+                                                    <span class="text-danger">{{ $message }}</span>
+
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label for="contact-email">E-mail <span>*</span></label>
-                                                <input type="email" name="email" id="email">
+                                                <input type="email" name="email" id="email" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="contact-message">Your Message</label>
-                                                <textarea name="message" id="message" cols="1" rows="2"></textarea>
+                                                <label for="contact-message">Message</label>
+                                                <textarea name="message" id="message" cols="1" rows="2" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group mb--0">
-                                                <button type="submit" class="axil-btn btn-bg-primary">Send Message</button>
+                                                <button type="submit" class="axil-btn btn-bg-primary">Gửi</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+
     						</div>
     						<!-- End Single Post List  -->
 

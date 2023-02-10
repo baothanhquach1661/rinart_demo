@@ -2,12 +2,15 @@
   <div class="container">
       <div class="product-area pb--50">
           <div class="section-title-wrapper section-title-center">
+            @php
+              $custom_text = App\Models\CustomText::find(1);
+            @endphp
 
             @if(session()->get('language') == 'vietnamese')
-              <span class="title-highlighter highlighter-primary"><i class="fas fa-star"></i>Ưu Đãi</span>
+              <span class="title-highlighter highlighter-primary" style="font-size: {{ $custom_text->text_5 }}px; color: {{ $custom_text->text_5_color }};"><i class="fas fa-star"></i>Ưu Đãi</span>
               <h2 class="title">Ưa Đãi Lớn Nhất Trong Tháng</h2>
             @else
-              <span class="title-highlighter highlighter-primary"><i class="fas fa-star"></i>Big Sales</span>
+              <span class="title-highlighter highlighter-primary" style="font-size: {{ $custom_text->text_5 }}px; color: {{ $custom_text->text_5_color }};"><i class="fas fa-star"></i>Big Sales</span>
               <h2 class="title">Best Promotion of the Month</h2>
             @endif
 

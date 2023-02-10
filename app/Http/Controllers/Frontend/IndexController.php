@@ -72,8 +72,9 @@ class IndexController extends Controller
 
         //$title = ucwords(str_replace('-', ' ', $slug));
         $title = $name;
+        $slug = $slug;
 
-        return view('frontend.product.category_products', compact('products', 'categories', 'title'));
+        return view('frontend.product.category_products', compact('products', 'categories', 'title', 'slug'));
     }
 
 

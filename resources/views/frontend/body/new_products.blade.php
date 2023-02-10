@@ -2,12 +2,15 @@
   <div class="container">
       <div class="product-area pb--50">
           <div class="section-title-wrapper">
+            @php
+              $custom_text = App\Models\CustomText::find(1);
+            @endphp
 
               @if(session()->get('language') == 'vietnamese')
-                <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i>Trong Tháng</span>
+                <span class="title-highlighter highlighter-primary" style="font-size: {{ $custom_text->text_3 }}px; color: {{ $custom_text->text_3_color }};"> <i class="far fa-shopping-basket"></i>Trong Tháng</span>
                 <h2 class="title">Sản Phẩm Mới</h2>
               @else
-                <span class="title-highlighter highlighter-primary"> <i class="far fa-shopping-basket"></i>This Month</span>
+                <span class="title-highlighter highlighter-primary" style="font-size: {{ $custom_text->text_3 }}px; color: {{ $custom_text->text_3_color }};"> <i class="far fa-shopping-basket"></i>This Month</span>
                 <h2 class="title">New Products</h2>
               @endif
 

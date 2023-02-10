@@ -2,7 +2,10 @@
   <div class="container">
       <div class="product-area pb--50">
           <div class="section-title-wrapper">
-              <span class="title-highlighter highlighter-secondary"><i class="far fa-shopping-basket"></i>
+            @php
+              $custom_text = App\Models\CustomText::find(1);
+            @endphp
+              <span class="title-highlighter highlighter-secondary" style="font-size: {{ $custom_text->text_2 }}px; color: {{ $custom_text->text_2_color }};"><i class="far fa-shopping-basket"></i>
                 
                 @if(session()->get('language') == 'vietnamese')
                   Danh Mục

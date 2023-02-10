@@ -146,25 +146,30 @@
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="contact-name">Tên <span>*</span></label>
-                                                <input type="text" name="name" id="name">
+                                                <input type="text" name="name" id="name" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="contact-phone">Số điện thoại <span>*</span></label>
-                                                <input type="text" name="phone" id="phone">
+                                                <input type="text" name="phone" id="phone" required>
+                                                @error('phone')
+
+                                                    <span class="text-danger">{{ $message }}</span>
+
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="form-group">
                                                 <label for="contact-email">E-mail <span>*</span></label>
-                                                <input type="email" name="email" id="email">
+                                                <input type="email" name="email" id="email" required>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="contact-message">Message</label>
-                                                <textarea name="message" id="message" cols="1" rows="2"></textarea>
+                                                <textarea name="message" id="message" cols="1" rows="2" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">

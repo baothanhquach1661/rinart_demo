@@ -38,10 +38,15 @@
             <div class="col-lg-6 col-md-8">
                 <div class="inner">
                     <ul class="axil-breadcrumb">
-                        <li class="axil-breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                        <li class="separator"></li>
-
-                        <li class="axil-breadcrumb-item active" aria-current="page">{{ $title }}</li>
+                        @if(session()->get('language') == 'vietnamese')
+                            <li class="axil-breadcrumb-item"><a href="{{ url('/') }}">Trang Chủ</a></li>
+                            <li class="separator"></li>
+                            <li class="axil-breadcrumb-item active" aria-current="page">{{ $title }}</li>
+                        @else
+                            <li class="axil-breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="separator"></li>
+                            <li class="axil-breadcrumb-item active" aria-current="page">{{ $slug }}</li>
+                        @endif
 
                     </ul>
                 </div>
@@ -66,20 +71,7 @@
                 <div class="axil-shop-top">
                     <div class="row">
                         <div class="col-lg-9">
-                            <div class="category-select">
-
-                                <!-- Start Single Select  -->
-                                {{-- <select class="single-select" onchange="location = this.value;">
-
-                                	@foreach($categories as $category)
-                                    	<option value="{{ url('/category/product/'.$category->id.'/'.$category->category_slug_vi) }}">
-								        	{{ $category->category_name_vi }}
-								       	</option>
-                                    @endforeach
-                                </select> --}}
-
-
-                            </div>
+                            <div class="category-select"></div>
                         </div>
                     </div>
                 </div>
@@ -91,36 +83,39 @@
 	            <div class="col-xl-3 col-lg-4 col-sm-6">
 	                <div class="axil-product product-style-one has-color-pick mt--40">
 	                    <div class="thumbnail">
-	                        <a href="single-product.html">
+	                        <a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">
 	                            <img src="{{ asset($product->product_thumbnail) }}" alt="Product Images">
 	                        </a>
-	                        <div class="label-block label-right">
-	                            <div class="product-badget">20% OFF</div>
-	                        </div>
 	                        <div class="product-hover-action">
 	                            <ul class="cart-action">
-	                                <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-	                                <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-	                                <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
+	                                <ul class="cart-action">
+                                        <li class="select-option"><a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">Xem Thêm</a></li>
+                                    </ul>
 	                            </ul>
 	                        </div>
 	                    </div>
 	                    <div class="product-content">
 	                        <div class="inner">
-	                            <h5 class="title"><a href="single-product.html">3D™ wireless headset</a></h5>
+	                            <h5 class="title"><a href="{{ url('/'.$product->id.'/'.$product->product_slug_en) }}">{{ $product->product_name_vi }}</a></h5>
+
 	                            <div class="product-price-variant">
-	                                <span class="price current-price">$30</span>
-	                                <span class="price old-price">$30</span>
-	                            </div>
-	                            <div class="color-variant-wrapper">
-	                                <ul class="color-variant">
-	                                    <li class="color-extra-01 active"><span><span class="color"></span></span>
-	                                    </li>
-	                                    <li class="color-extra-02"><span><span class="color"></span></span>
-	                                    </li>
-	                                    <li class="color-extra-03"><span><span class="color"></span></span>
-	                                    </li>
-	                                </ul>
+	                                @php
+                                        $formated_amount = number_format($product->discount_price);
+                                        $selling_price = number_format($product->selling_price);
+                                      @endphp
+
+                                      @if($product->discount_price == NULL)
+                                        <span class="price current-price" style="color: rgba(0,0,0,.54);">
+                                          ₫{{ $selling_price }}
+                                        </span>
+                                      @else
+                                        <span class="price current-price" style="text-decoration: line-through;color: rgba(0,0,0,.54); font-size: 15px;">
+                                          ₫{{ $selling_price }}
+                                        </span>
+                                        <span class="price current-price" style="color: #ee4d2d;">
+                                          ₫{{ $formated_amount }}
+                                        </span>
+                                      @endif
 	                            </div>
 	                        </div>
 	                    </div>

@@ -4,12 +4,17 @@
           <div class="axil-isotope-wrapper">
               <div class="product-isotope-heading">
                   <div class="section-title-wrapper">
+
+                    @php
+                      $custom_text = App\Models\CustomText::find(1);
+                    @endphp
+
                     @if(session()->get('language') == 'vietnamese')
-                      <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> 
+                      <span class="title-highlighter highlighter-primary" style="font-size: {{ $custom_text->text_4 }}px; color: {{ $custom_text->text_4_color }};"><i class="far fa-shopping-basket"></i> 
                       Sản Phẩm Của RinArt</span>
                       <h2 class="title">Nổi Bật Nhất</h2>
                     @else
-                      <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> 
+                      <span class="title-highlighter highlighter-primary" style="font-size: {{ $custom_text->text_4 }}px; color: {{ $custom_text->text_4_color }};"><i class="far fa-shopping-basket"></i> 
                       Our Products</span>
                       <h2 class="title">Best Seller</h2>
                     @endif

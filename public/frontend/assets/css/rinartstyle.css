@@ -1,8 +1,8 @@
 .social-button{
       display: inline-grid;
         position: fixed;
-        bottom: 15px;
-        left: 45px;
+        bottom: 100px;
+        right: 45px;
         min-width: 45px;
         text-align: center;
         z-index: 99999;

@@ -95,7 +95,7 @@
 							@if(session()->get('language') == 'vietnamese')
 								<ul class="product-meta">
 									<li><i class="fal fa-check"></i>Còn hàng</li>
-									<li><i class="fal fa-check"></i>Giao hàng miễn phí khắp tỉnh</li>
+									<li><i class="fal fa-check"></i>Giao hàng hỏa tốc khắp tỉnh</li>
 									<li><i class="fal fa-check"></i>Giảm giá thường xuyên vào các dịp lễ</li>
 								</ul>
 
@@ -124,6 +124,55 @@
 
 								</div>
 								<!-- End Product Action Wrapper  -->
+								<br>
+								<div class="contact-form">
+									<h3 class="title mb--10">Hoặc gửi tin</h3>
+	                                
+
+
+	                                <form method="POST" action="{{ route('store.message') }}">
+	                                    @csrf
+
+	                                    <div class="row row--10">
+	                                        <div class="col-lg-4">
+	                                            <div class="form-group">
+	                                                <label for="contact-name">Tên <span>*</span></label>
+	                                                <input type="text" name="name" id="name" required>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-lg-4">
+	                                            <div class="form-group">
+	                                                <label for="contact-phone">Số điện thoại <span>*</span></label>
+	                                                <input type="text" name="phone" id="phone" required>
+	                                                @error('phone')
+
+	                                                    <span class="text-danger">{{ $message }}</span>
+
+	                                                @enderror
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-lg-4">
+	                                            <div class="form-group">
+	                                                <label for="contact-email">E-mail <span>*</span></label>
+	                                                <input type="email" name="email" id="email" required>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-12">
+	                                            <div class="form-group">
+	                                                <label for="contact-message">Message</label>
+	                                                <textarea name="message" id="message" cols="1" rows="2" required></textarea>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-12">
+	                                            <div class="form-group mb--0">
+	                                                <button type="submit" class="axil-btn btn-bg-primary">Gửi</button>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </form>
+
+
+	                            </div>
 							@else
 
 								<ul class="product-meta">
@@ -150,6 +199,52 @@
 
 								</div>
 								<!-- End Product Action Wrapper  -->
+								<div class="contact-form">
+	                                <h3 class="title mb--10">We would love to hear from you.</h3>
+	                                <p>If you’ve got great products your making or looking to work with us then drop us a line.</p>
+
+	                                <form method="POST" action="{{ route('store.message') }}">
+	                                    @csrf
+
+	                                    <div class="row row--10">
+	                                        <div class="col-lg-4">
+	                                            <div class="form-group">
+	                                                <label for="contact-name">Tên <span>*</span></label>
+	                                                <input type="text" name="name" id="name" required>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-lg-4">
+	                                            <div class="form-group">
+	                                                <label for="contact-phone">Số điện thoại <span>*</span></label>
+	                                                <input type="text" name="phone" id="phone" required>
+	                                                @error('phone')
+
+	                                                    <span class="text-danger">{{ $message }}</span>
+
+	                                                @enderror
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-lg-4">
+	                                            <div class="form-group">
+	                                                <label for="contact-email">E-mail <span>*</span></label>
+	                                                <input type="email" name="email" id="email" required>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-12">
+	                                            <div class="form-group">
+	                                                <label for="contact-message">Message</label>
+	                                                <textarea name="message" id="message" cols="1" rows="2" required></textarea>
+	                                            </div>
+	                                        </div>
+	                                        <div class="col-12">
+	                                            <div class="form-group mb--0">
+	                                                <button type="submit" class="axil-btn btn-bg-primary">Gửi</button>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </form>
+
+	                            </div>
 
 							@endif
 

@@ -97,6 +97,7 @@
                         <li><a href="{{ route('admin.footer.site') }}">Footer Site</a></li>
                         <li><a href="{{ route('admin.seo.setting') }}">SEO Setting</a></li>
                         <li><a href="{{ route('admin.video.setting') }}">Manage Video Content</a></li>
+                        <li><a href="{{ route('admin.custom_text.setting') }}">Custom Text</a></li>
                         <li><a href="#">Site Setting</a></li>
                     </ul>
                 </li>

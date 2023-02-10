@@ -18,6 +18,15 @@ class ContactController extends Controller
 
     public function storeMessage(Request $request)
     {
+
+        $this->validate(
+            $request, 
+            ['phone' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'],
+            ['phone.regex' => 'Số điện thoại không đúng định dạng'],
+            ['phone.min' => 'Số điện thoại quá ngắn'],
+
+        );
+
         Message::insert([
 
             'name' => $request->name,

@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingController;
 use App\Http\Controllers\Backend\VideoController;
+use App\Http\Controllers\Backend\CustomTextController;
 
 
 use App\Http\Controllers\Frontend\IndexController;
@@ -294,6 +295,16 @@ Route::middleware(['auth:admin'])->group(function(){
     // ----------- end Customer messages area site setting ------------//
 
 
+    // All Custom Text Site  
+    Route::prefix('admin/custom_text-setting')->group(function (){
+
+        Route::get('/setting', [CustomTextController::class, 'setting'])->name('admin.custom_text.setting');
+        Route::post('/update', [CustomTextController::class, 'customTextUpdate'])->name('admin.custom_text.update');
+
+    });
+    // ----------- end Customer messages area site setting ------------//
+
+
 
 });
 
@@ -391,7 +402,7 @@ Route::get('/pricing', [PriceController::class, 'pricingPage'])->name('price_lis
 
 
 ///////----------- Frontend Pricing Detail Page --------------//////////
-Route::get('/{id}/{slug}', [PriceController::class, 'priceDetail'])->name('price_list.detail');
+Route::get('/pricing/{id}/{slug}/1', [PriceController::class, 'priceDetail'])->name('price_list.detail');
 
 
 

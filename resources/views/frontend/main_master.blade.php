@@ -340,7 +340,7 @@
                 <img src="{{ asset('frontend/assets/images/icons8-facebook-48.png') }}" alt="">
                 <span>Hotline: 0909 888 213</span>
             </a>
-            <a href="http://zalo.me/0981481368" class="zalo">
+            <a href="http://zalo.me/0909888213" class="zalo">
                 <img src="{{ asset('frontend/assets/images/icons8-zalo-48.png') }}" alt="">
                 <span>Hotline: 0909 888 213</span>
             </a>
